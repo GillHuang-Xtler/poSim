@@ -12,9 +12,10 @@ sys.stdout.flush()
 
 # parameter settings
 LR = 0.001
-MAX_ROUND = 200
+MAX_ROUND = 100
 ROUND_NUMBER_FOR_SAVE = 10
 ROUND_NUMBER_FOR_REDUCE = 5
+CLIENT_NUMBER=10
 IID = True
 DATA_SET = 'Mnist'
 MODEL = 'CNN'
@@ -61,6 +62,14 @@ def load_model(model, rank):
         round = 0
     return model, round
 
+def save_model(model, round, rank):
+    print('===> Saving models...')
+    state = {
+        'state': model.state_dict(),
+        'round': round,
+        }
+    torch.save(state, 'client5' +'.t7')
+
 
 def run(size, rank, epoch, batchsize):
     # 确定数据集和模型
@@ -91,10 +100,12 @@ def run(size, rank, epoch, batchsize):
                 loss.backward()                #反向传播
                 optimizer.step()               #更新参数
         round+=1
+    save_model(model=model, round=1,rank=rank)
+
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('--size', '-s', type=int, default=5)                #5个用户
+    parser.add_argument('--size', '-s', type=int, default=1)                #5个用户
     parser.add_argument('--epoch', '-e', type=int, default=1)               #本地就训练1个epoch
     parser.add_argument('--batchsize', '-b', type=int, default=100)         #批训练数目是100
     args = parser.parse_args()
@@ -103,4 +114,4 @@ if __name__=="__main__":
     epoch = args.epoch
     batchsize = args.batchsize
     for rank in range(0, size):
-        run(size=5, rank=rank, epoch=1, batchsize=100)
+        run(size=1, rank=rank, epoch=1, batchsize=100)

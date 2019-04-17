@@ -68,7 +68,7 @@ def save_model(model, round, rank):
         'state': model.state_dict(),
         'round': round,
         }
-    torch.save(state, 'client85' +'.t7')
+    torch.save(state, './models/client85' +'.t7')
 
 
 def run(size, rank, epoch, batchsize):

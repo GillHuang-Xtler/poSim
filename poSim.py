@@ -12,7 +12,7 @@ sys.stdout.flush()
 
 # parameter settings
 LR = 0.001
-MAX_ROUND = 100
+MAX_ROUND = 200
 ROUND_NUMBER_FOR_SAVE = 10
 ROUND_NUMBER_FOR_REDUCE = 5
 CLIENT_NUMBER=10
@@ -68,7 +68,7 @@ def save_model(model, round, rank):
         'state': model.state_dict(),
         'round': round,
         }
-    torch.save(state, 'client5' +'.t7')
+    torch.save(state, 'client85' +'.t7')
 
 
 def run(size, rank, epoch, batchsize):

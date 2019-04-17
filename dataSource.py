@@ -30,7 +30,7 @@ class Mnist():
         self.train_data = datasets.MNIST(root='./mnist/', train=True,  transform=transforms.ToTensor(),download=True)
         self.test_data = datasets.MNIST(root='./mnist/', train=False, transform=transforms.ToTensor())
         # 生成1-60000之间的100个随机索引
-        self.sample_index= random.sample(range(60000),200)
+        self.sample_index= random.sample(range(60000),800)
         self.train_loader = torch.utils.data.DataLoader(dataset=Subset(self.train_data,self.sample_index), batch_size=batchsize, shuffle=True)
         # self.train_loader = torch.utils.data.DataLoader(dataset=self.train_data, batch_size=batchsize, shuffle=True)
         self.test_loader = torch.utils.data.DataLoader(dataset=self.test_data, batch_size=100, shuffle=True)

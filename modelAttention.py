@@ -16,6 +16,6 @@ def readParameters(model,name):
     return model
 
 if __name__=="__main__":
-    m1=readParameters(model = CNNMnist(),name='client1.t7')
-    m2=readParameters(model = CNNMnist(),name='client2.t7')
+    m1=readParameters(model = CNNMnist(),name='client54.t7')
+    m2=readParameters(model = CNNMnist(),name='client55.t7')
     para=m1.parameters()
